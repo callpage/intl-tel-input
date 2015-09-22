@@ -11,7 +11,7 @@ https://github.com/Bluefieldscom/intl-tel-input.git
     } else if (typeof module === "object" && module.exports) {
         module.exports = factory(require("jquery"), window, document);
     } else {*/
-        factory(jQuery, window, document);
+        factory(callpage.jQuery, window, document);
     //}
 })(function($, window, document, undefined) {
     "use strict";

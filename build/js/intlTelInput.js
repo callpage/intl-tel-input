@@ -192,7 +192,7 @@ https://github.com/Bluefieldscom/intl-tel-input.git
             }).appendTo(selectedFlag);
             // CSS triangle
             $("<div>", {
-                "class": "arrow"
+                "class": "intl-arrow"
             }).appendTo(selectedFlag);
             // country list
             // mobile is just a native select element
@@ -633,7 +633,7 @@ https://github.com/Bluefieldscom/intl-tel-input.git
             // bind all the dropdown-related listeners: mouseover, click, click-off, keydown
             this._bindDropdownListeners();
             // update the arrow
-            this.selectedFlagInner.children(".arrow").addClass("up");
+            this.selectedFlagInner.children(".intl-arrow").addClass("up");
         },
         // decide where to position dropdown (depends on position within viewport, and scroll)
         _setDropdownPosition: function() {
@@ -882,7 +882,7 @@ https://github.com/Bluefieldscom/intl-tel-input.git
         _closeDropdown: function() {
             this.countryList.addClass("hide");
             // update the arrow
-            this.selectedFlagInner.children(".arrow").removeClass("up");
+            this.selectedFlagInner.children(".intl-arrow").removeClass("up");
             // unbind key events
             $(document).off(this.ns);
             // unbind click-off-to-close

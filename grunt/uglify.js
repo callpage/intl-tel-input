@@ -2,9 +2,11 @@ module.exports = function(grunt) {
   return {
     options: {
       banner: '/*\n' +
-        'International Telephone Input v<%= package.version %>\n' +
-        '<%= package.repository.url %>\n' +
-        '*/\n'
+        ' * International Telephone Input v<%= package.version %>\n' +
+        ' * <%= package.repository.url %>\n' +
+        ' * Licensed under the MIT license\n' +
+        ' */\n',
+      screwIE8: false
     },
     dev: {
       options: {

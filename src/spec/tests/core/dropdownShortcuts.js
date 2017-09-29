@@ -1,49 +1,61 @@
 "use strict";
 
-describe("keyboard shortcuts: init vanilla plugin (with nationalMode=false) to test keyboard shortcuts", function() {
+describe("dropdown shortcuts: init plugin (with nationalMode=false) to test keyboard shortcuts", function() {
 
   beforeEach(function() {
     intlSetup();
-    input = $("<input>");
+    input = $("<input>").appendTo("body");
     input.intlTelInput({
       nationalMode: false
     });
   });
 
-  describe("when dropdown is closed", function () {
-    beforeEach(function () {
+  afterEach(function() {
+    input.intlTelInput("destroy").remove();
+    input = null;
+  });
+
+
+
+  describe("when selected flag element has focus", function() {
+
+    beforeEach(function() {
       getFlagsContainerElement().focus();
     });
 
-    it("pressing UP opens the dropdown", function () {
+    it("pressing UP opens the dropdown", function() {
       triggerKeyOnFlagsContainerElement("UP");
-      expect(getListElement()).not.toHaveClass("hide");
+      expect(getListElement()).toBeVisible();
     });
 
-    it("pressing DOWN opens the dropdown", function () {
+    it("pressing DOWN opens the dropdown", function() {
       triggerKeyOnFlagsContainerElement("DOWN");
-      expect(getListElement()).not.toHaveClass("hide");
+      expect(getListElement()).toBeVisible();
     });
 
-    it("pressing SPACE opens the dropdown", function () {
+    it("pressing SPACE opens the dropdown", function() {
       triggerKeyOnFlagsContainerElement("SPACE");
-      expect(getListElement()).not.toHaveClass("hide");
+      expect(getListElement()).toBeVisible();
     });
 
-    it("pressing ENTER opens the dropdown", function () {
+    it("pressing ENTER opens the dropdown", function() {
       triggerKeyOnFlagsContainerElement("ENTER");
-      expect(getListElement()).not.toHaveClass("hide");
+      expect(getListElement()).toBeVisible();
     });
+
   });
 
-  describe("when dropdown is opened", function () {
-    beforeEach(function () {
+
+
+  describe("when dropdown is opened", function() {
+
+    beforeEach(function() {
       getSelectedFlagContainer().click();
     });
 
     it("pressing esc closes the popup", function() {
       triggerKeyOnBody("ESC");
-      expect(getListElement()).toHaveClass("hide");
+      expect(getListElement()).not.toBeVisible();
     });
 
     it("pressing up while on the top item does not change the highlighted item", function() {
@@ -66,7 +78,9 @@ describe("keyboard shortcuts: init vanilla plugin (with nationalMode=false) to t
       expect(zambiaListItem).toHaveClass("highlight");
     });
 
-    describe("typing z then i", function() {
+
+
+    describe("typing z then i then DOWN", function() {
 
       var lastItem;
 
@@ -74,11 +88,12 @@ describe("keyboard shortcuts: init vanilla plugin (with nationalMode=false) to t
         lastItem = getListElement().find("li.country:last");
         triggerKeyOnBody("Z");
         triggerKeyOnBody("I");
+        triggerKeyOnBody("DOWN");
       });
 
-      it("highlights the last item, which is Zimbabwe", function() {
+      it("highlights the last item, which is Åland Islands", function() {
         expect(lastItem).toHaveClass("highlight");
-        expect(lastItem.attr("data-country-code")).toEqual("zw");
+        expect(lastItem.attr("data-country-code")).toEqual("ax");
       });
 
       it("pressing down while on the last item does not change the highlighted item", function() {
@@ -120,7 +135,7 @@ describe("keyboard shortcuts: init vanilla plugin (with nationalMode=false) to t
         });
 
         it("closes the dropdown", function() {
-          expect(getListElement()).toHaveClass("hide");
+          expect(getListElement()).not.toBeVisible();
         });
 
         it("updates the dial code", function() {
@@ -130,11 +145,6 @@ describe("keyboard shortcuts: init vanilla plugin (with nationalMode=false) to t
       });
 
     });
-  });
-
-  afterEach(function() {
-    input.intlTelInput("destroy");
-    input = null;
   });
 
 });

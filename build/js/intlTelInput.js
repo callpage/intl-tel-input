@@ -212,7 +212,7 @@
                 selectedFlag.attr("tabindex", "0");
                 // CSS triangle
                 $("<div>", {
-                    "class": "iti-arrow"
+                    "class": "intl-arrow"
                 }).appendTo(selectedFlag);
                 // country dropdown: preferred countries, then divider, then all countries
                 this.countryList = $("<ul>", {
@@ -508,7 +508,7 @@
             // bind all the dropdown-related listeners: mouseover, click, click-off, keydown
             this._bindDropdownListeners();
             // update the arrow
-            this.selectedFlagInner.children(".iti-arrow").addClass("up");
+            this.selectedFlagInner.children(".intl-arrow").addClass("up");
             this.telInput.trigger("open:countrydropdown");
         },
         // decide where to position dropdown (depends on position within viewport, and scroll)
@@ -780,7 +780,7 @@
         _closeDropdown: function() {
             this.countryList.addClass("hide");
             // update the arrow
-            this.selectedFlagInner.children(".iti-arrow").removeClass("up");
+            this.selectedFlagInner.children(".intl-arrow").removeClass("up");
             // unbind key events
             $(document).off(this.ns);
             // unbind click-off-to-close

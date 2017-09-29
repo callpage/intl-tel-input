@@ -1,43 +1,18 @@
-// Tell JSHint to ignore this warning: "character may get silently deleted by one or more browsers"
-// jshint -W100
-
 // Array of country objects for the flag dropdown.
-// Each contains a name, country code (ISO 3166-1 alpha-2) and dial code.
-// Originally from https://github.com/mledoze/countries
 
-// then with a couple of manual re-arrangements to be alphabetical
-// then changed Kazakhstan from +76 to +7
-// and Vatican City from +379 to +39 (see issue 50)
-// and Caribean Netherlands from +5997 to +599
-// and Curacao from +5999 to +599
-// Removed: Åland Islands, Christmas Island, Cocos Islands, Guernsey, Isle of Man, Jersey, Kosovo, Mayotte, Pitcairn Islands, South Georgia, Svalbard, Western Sahara
+// Here is the criteria for the plugin to support a given country/territory
+// - It has an iso2 code: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+// - It has it's own country calling code (it is not a sub-region of another country): https://en.wikipedia.org/wiki/List_of_country_calling_codes
+// - It has a flag in the region-flags project: https://github.com/behdad/region-flags/tree/gh-pages/png
+// - It is supported by libphonenumber (it must be listed on this page): https://github.com/googlei18n/libphonenumber/blob/master/resources/ShortNumberMetadata.xml
 
-// UPDATE Sept 12th 2015
-// List of regions that have iso2 country codes, which I have chosen to omit:
-// (based on this information: https://en.wikipedia.org/wiki/List_of_country_calling_codes)
-// AQ - Antarctica - all different country codes depending on which "base"
-// AX - Åland Islands - region of Finland (same calling code)
-// BV - Bouvet Island - no calling code
-// CC - Cocos (Keeling) Islands - territory of Australia (same calling code)
-// CX - Christmas Island - territory of Australia (same calling code)
-// GS - South Georgia and the South Sandwich Islands - "inhospitable collection of islands" - same flag and calling code as Falkland Islands
-// HM - Heard Island and McDonald Islands - no calling code
-// PN - Pitcairn - tiny population (56), same calling code as New Zealand
-// SJ - Svalbard and Jan Mayen - territories of Norway (same calling code)
-// TF - French Southern Territories - no calling code
-// UM - United States Minor Outlying Islands - no calling code
-
-// Update: converted objects to arrays to save bytes!
-// Update: added "priority" for countries with the same dialCode as others
-// Update: added array of area codes for countries with the same dialCode as others
-
-// So each country array has the following information:
+// Each country array has the following information:
 // [
 //    Country name,
 //    iso2 code,
 //    International dial code,
 //    Order (if >1 country with same dial code),
-//    Area codes (if >1 country with same dial code)
+//    Area codes
 // ]
 var allCountries = [
   [
@@ -98,7 +73,8 @@ var allCountries = [
   [
     "Australia",
     "au",
-    "61"
+    "61",
+    0
   ],
   [
     "Austria (Österreich)",
@@ -264,6 +240,18 @@ var allCountries = [
     "86"
   ],
   [
+    "Christmas Island",
+    "cx",
+    "61",
+    2
+  ],
+  [
+    "Cocos (Keeling) Islands",
+    "cc",
+    "61",
+    1
+  ],
+  [
     "Colombia",
     "co",
     "57"
@@ -399,7 +387,8 @@ var allCountries = [
   [
     "Finland (Suomi)",
     "fi",
-    "358"
+    "358",
+    0
   ],
   [
     "France",
@@ -601,6 +590,11 @@ var allCountries = [
     "Kiribati",
     "ki",
     "686"
+  ],
+  [
+    "Kosovo",
+    "xk",
+    "383"
   ],
   [
     "Kuwait (‫الكويت‬‎)",
@@ -842,7 +836,8 @@ var allCountries = [
   [
     "Norway (Norge)",
     "no",
-    "47"
+    "47",
+    0
   ],
   [
     "Oman (‫عُمان‬‎)",
@@ -934,7 +929,7 @@ var allCountries = [
     "250"
   ],
   [
-    "Saint Barthélemy (Saint-Barthélemy)",
+    "Saint Barthélemy",
     "bl",
     "590",
     1
@@ -1074,6 +1069,12 @@ var allCountries = [
     "Suriname",
     "sr",
     "597"
+  ],
+  [
+    "Svalbard and Jan Mayen",
+    "sj",
+    "47",
+    1
   ],
   [
     "Swaziland",
@@ -1229,7 +1230,7 @@ var allCountries = [
     "84"
   ],
   [
-    "Wallis and Futuna",
+    "Wallis and Futuna (Wallis-et-Futuna)",
     "wf",
     "681"
   ],
@@ -1253,6 +1254,12 @@ var allCountries = [
     "Zimbabwe",
     "zw",
     "263"
+  ],
+  [
+    "Åland Islands",
+    "ax",
+    "358",
+    1
   ]
 ];
 

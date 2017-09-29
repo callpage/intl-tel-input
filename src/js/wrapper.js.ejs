@@ -12,7 +12,11 @@
 }(function ($, window, document, undefined) {
   "use strict";
 
-  <%- plugin %>
-  <%- data %>
+  <%= plugin %>
+
+  // version
+  $.fn[pluginName].version = "<%= version %>";
+
+  <%= data %>
 
 }));

@@ -1,16 +1,14 @@
 var input,
-  totalCountries = 238,
-  totalDialCodes = 227,
+  totalCountries = 243,
+  totalDialCodes = 228,
+  defaultPreferredCountries = 2,
   // don't call this "keys" as it will clash with the plugin
   keyCodes = {
     UP: 38,
     DOWN: 40,
     ENTER: 13,
     ESC: 27,
-    SPACE: 32,
-    BACKSPACE: 8,
-    DELETE: 46,
-    CTRL: 17
+    SPACE: 32
   };
 
 var intlSetup = function(utilsScript) {
@@ -68,15 +66,24 @@ var getSelectedFlagElement = function(i) {
   return getSelectedFlagContainer(i).find(".iti-flag");
 };
 
+var getSelectedDialCodeElement = function(i) {
+  i = i || input;
+  return getSelectedFlagContainer(i).find(".selected-dial-code");
+};
+
 var getFlagsContainerElement = function(i) {
   i = i || input;
-  return i.parent().find(".flag-dropdown");
+  return i.parent().find(".flag-container");
 };
 
 var selectFlag = function(countryCode, i) {
   i = i || input;
   getSelectedFlagContainer(i).click();
   getListElement(i).find("li[data-country-code='" + countryCode + "']").click();
+};
+
+var openCountryDropDown = function() {
+    getSelectedFlagContainer().click();
 };
 
 var putCursorAtEnd = function() {
